@@ -2047,7 +2047,7 @@ const renderLoginPage = async () => {
 	    ::selection {background-color:#d2e0fb}
      	    .dark ::selection {background-color:#51829b}
             input[type=password] {width:100%;font-size:1em;outline:none;border:none;border-bottom:0.0625em solid #fff;padding:.5em .5em .5em 1.75em;color:#555;background:transparent;transition:0.5s}
-            .dark input[type=password] {border-bottom-color:#061a2e}
+            .dark input[type=password] {color:#aaa;border-bottom-color:#061a2e}
             input[type=password]:focus {border-bottom-color:#ddd}
             .dark input[type=password]:focus {border-bottom-color:#555}
             button[type=submit] {display:block;width:100%;padding:.75em 0;border:none;color:#fff;background:#88ab8e;cursor:pointer;border-radius:.375em;transition:all 150ms ease}
