@@ -190,7 +190,7 @@ export default {
 
                     default:
                         // return new Response('Not found', { status: 404 });
-                        url.hostname = 'www.speedtest.net';
+                        url.hostname = 'www.zula.ir';
                         url.protocol = 'https:';
                         request = new Request(url, request);
                         return await fetch(request);
@@ -779,7 +779,7 @@ const getNormalConfigs = async (env, hostName, client) => {
     const resolved = await resolveDNS(hostName);
     const Addresses = [
         hostName,
-        'www.speedtest.net',
+        'www.zula.ir',
         ...(cleanIPs ? cleanIPs.split(',') : []),
         ...resolved.ipv4,
         ...resolved.ipv6.map((ip) => `[${ip}]`),
@@ -984,7 +984,7 @@ const getFragmentConfigs = async (env, hostName, client) => {
     const resolved = await resolveDNS(hostName);
     const Addresses = [
         hostName,
-        "www.speedtest.net",
+        "zula.ir",
         ...(cleanIPs ? cleanIPs.split(",") : []),
         ...resolved.ipv4,
         ...resolved.ipv6.map((ip) => `[${ip}]`),
@@ -2016,116 +2016,112 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
 
 const renderLoginPage = async () => {
     const html = `
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-    <style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sign In - BPB Panel</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            * {box-sizing:border-box}
+            a {color:#999;text-decoration:none;transition:all 150ms ease}
+            a:hover, a:active {color:#51829B;text-decoration:none}
+            a:focus {outline:none}
+            html, body {margin:0;height:100%;text-align:center}
+            body {color:#666;background:#fff;font:normal normal normal 100%/150% Montserrat,Helvetica,Arial,sans-serif}
+            .dark {color:#fff;background:#061a2e}
+            .container {width:100%;height:100%;display:table}
+            .wrapper {display:table-cell;vertical-align:middle}
+            form {position:relative;width:22em;margin:0 auto;background:#fff;padding:2em 3em 1em;text-align:left}
+            .dark form {background:#061a2e}
+            .colormode {position:absolute;right:1.5em;top:1.5em;cursor:pointer}
+            .colormode i {color:#aaa;transition:.3s ease all, left .3s cubic-bezier(0.18, 0.89, 0.35, 1.15)}
+            .colormode i:hover {color:#f6995c;text-shadow:0 -.375em .75em #f6995c}
+            .dark .colormode i {}
+            .dark .colormode i:hover {color:#F6F193;text-shadow:0 -.375em .75em #F6F193}
+            p,h1 {margin:0;padding:0}
+            h1 {font-size:1.75em;font-weight:400;padding-bottom:1em;color:#88ab8e}
+            ::placeholder {color:#bbb;opacity:1}
+            input[type=password] {width:100%;font-size:1em;outline:none;border:none;border-bottom:0.0625em solid #fff;padding:.5em .5em .5em 1.75em;color:#555;background:transparent;transition:0.5s}
+            .dark input[type=password] {border-bottom-color:#061a2e}
+            input[type=password]:focus {border-bottom-color:#ddd}
+            .dark input[type=password]:focus {border-bottom-color:#555}
+            button[type=submit] {display:block;width:100%;padding:.75em 0;border:none;color:#fff;background:#88ab8e;cursor:pointer;border-radius:.375em;transition:all 150ms ease}
+            button[type=submit]:enabled:hover {background:#AFC8AD;letter-spacing:.125em}
+            button[type=submit]:disabled {cursor:auto;background:#AFC8AD}
 
-        html, body { height: 100%; margin: 0; }
-        body {
-            font-family: system-ui;
-            background-color: #f9f9f9;
-            position: relative;
-            overflow: hidden;
-        }
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-        }
-        h1 { font-size: 2.5rem; text-align: center; color: #09639f; margin: 0 auto 30px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25); }        
-        h2 {text-align: center;}
-        .form-container {
-            background: #f9f9f9;
-            border: 1px solid #eaeaea;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .form-control { margin-bottom: 15px; display: flex; align-items: center; }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            padding-right: 20px;
-            font-size: 110%;
-            font-weight: 600;
-            color: #333;
-        }
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            color: #333;
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            background-color: #09639f;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {background-color: #2980b9;}
-        @media only screen and (min-width: 768px) {
-            .container { width: 30%; }
-        }
-    </style>
+            @media only screen and (min-width: 37.5em) {
+                body {background:radial-gradient(circle, #f0f8ff 10%, #fff 100%)}
+                .dark {background:radial-gradient(circle, #153456 10%, #061a2e 100%)}
+                form {border:0.0625em solid #ddd;border-radius:.25em;box-shadow:0 0 .75em .25em #eee}
+                .dark form {border-color:#000;box-shadow:0 0 .75em .25em rgba(0,0,0,.3)}
+            }
+        </style>
     </head>
-    <body>
+    <body onload="IsDarkMode()">
         <div class="container">
-            <h1>BPB Panel <span style="font-size: smaller;">${panelVersion}</span> 💦</h1>
-            <div class="form-container">
-                <h2>User Login</h2>
+            <div class="wrapper">
                 <form id="loginForm">
-                    <div class="form-control">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <div id="passwordError" style="color: red; margin-bottom: 10px;"></div>
-                    <button type="submit" class="button">Login</button>
+                    <div onclick="ToggleDarkMode()" class="colormode" title="Change Color Mode"><i class="fa-solid fa-lightbulb fa-lg"></i></div>
+                    <h1>Sign In</h1>
+                    <p style="font-size:1.5em;font-weight:300;line-height:1.5em">Welcome Back,</p>
+                    <p style="font-size:1.5em;font-weight:200;line-height:1.25em;padding-bottom:4em">Sign in to continue to<br>BPB Panel</p>
+                    <label for="password"><i class="fa-solid fa-lock" style="color:#999;margin-right:-1.25em"></i></label>
+                    <input type="password" id="password" name="password" placeholder="Password" required autofocus>
+                    <p style="color:#ff8080;padding:0 0 1.5em;font-size:.6875em" id="passwordError">&nbsp;</p>
+                    <button type="submit" id="login"><i class="fa-solid fa-arrow-right"></i> LOGIN</button>
+                    <p style="text-align:center;padding-top:3em"><a href="https://github.com/bia-pain-bache/BPB-Worker-Panel/tree/main" title="PBP on Github" target="_blank"><i class="fa-brands fa-github fa-2x"></i></a></p>
+                    <p style="font-size:.75em;font-weight:300;text-align:center;padding-top:1em">Version ${panelVersion}</p>
                 </form>
             </div>
         </div>
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const password = document.getElementById('password').value;
+        <script>
+            var bodyel = document.body;
 
-            try {
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'text/plain'
-                    },
-                    body: password
-                });
-            
-                if (response.ok) {
-                    window.location.href = '/panel';
-                } else {
-                    passwordError.textContent = '⚠️ Wrong Password!';
-                    const errorMessage = await response.text();
-                    console.error('Login failed:', errorMessage);
-                }
-            } catch (error) {
-                console.error('Error during login:', error);
+            function ToggleDarkMode() {
+                bodyel.classList.toggle( "dark" );
+                var theme = bodyel.classList.contains( "dark") ? "dark" : "";
+                localStorage.setItem( "colormode", theme )
             }
-        });
-    </script>
+
+            function IsDarkMode() {
+                if ( localStorage.getItem( "colormode" ) == "dark" ) {
+                    bodyel.classList.add("dark")
+                }
+            }
+
+            document.getElementById('loginForm').addEventListener('submit', async (event) => {
+                event.preventDefault();
+                passwordError.innerHTML = '&nbsp;';
+                const password = document.getElementById('password').value;
+                login.innerHTML = '<i class="fa fa-refresh fa-spin"></i> LOGINING ...';
+                login.disabled = true;
+
+                try {
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: password
+                    });
+
+                    if (response.ok) {
+                        window.location.href = '/panel';
+                    } else {
+                        login.innerHTML = '<i class="fa-solid fa-arrow-right"></i> LOGIN';
+                        login.disabled = false;
+                        passwordError.textContent = 'Login failed! Please ensure the password is valid.';
+                        const errorMessage = await response.text();
+                        console.error('Login failed:', errorMessage);
+                    }
+                } catch (error) {
+                    console.error('Something went wrong!:', error);
+                }
+            });
+        </script>
     </body>
-    </html>`;
+</html>`;
 
     return html;
 }
