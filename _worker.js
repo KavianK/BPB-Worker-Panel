@@ -2034,12 +2034,11 @@ const renderLoginPage = async () => {
             .dark {color:#fff;background:#061a2e}
             .container {width:100%;height:100%;display:table}
             .wrapper {display:table-cell;vertical-align:middle}
-            form {position:relative;width:24em;margin:0 auto;background:#fff;padding:2em 3em 1em;text-align:left}
+            form {position:relative;width:24em;margin:1em auto;background:#fff;padding:2em 3em 1em;text-align:left}
             .dark form {background:#061a2e}
             .colormode {position:absolute;right:1.5em;top:1.5em;cursor:pointer}
             .colormode i {transition:.3s ease all, left .3s cubic-bezier(0.18, 0.89, 0.35, 1.15)}
             .colormode i:hover {color:#f6995c;text-shadow:0 -.375em .75em #f6995c}
-            .dark .colormode i {}
             .dark .colormode i:hover {color:#F6F193;text-shadow:0 -.375em .75em #F6F193}
             p,h1 {margin:0;padding:0}
             h1 {font-size:1.75em;font-weight:400;padding-bottom:1em;color:#51829b}
