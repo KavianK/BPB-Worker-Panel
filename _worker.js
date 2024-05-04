@@ -2111,7 +2111,7 @@ const renderLoginPage = async () => {
                     } else {
                         login.innerHTML = '<i class="fa-regular fa-arrow-right"></i> LOGIN';
                         login.disabled = false;
-                        passwordError.textContent = '<i class="fa-solid fa-circle-exclamation"></i> Login failed! Please ensure the password is valid.';
+                        passwordError.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Login failed! Please ensure the password is valid.';
                         password.select();
                         const errorMessage = await response.text();
                         console.error('Login failed:', errorMessage);
