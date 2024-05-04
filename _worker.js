@@ -2044,6 +2044,7 @@ const renderLoginPage = async () => {
             p,h1 {margin:0;padding:0}
             h1 {font-size:1.75em;font-weight:400;padding-bottom:1em;color:#51829b}
             ::placeholder {color:#bbb;opacity:1}
+	    ::selection {background-color:#88ab8e}
             input[type=password] {width:100%;font-size:1em;outline:none;border:none;border-bottom:0.0625em solid #fff;padding:.5em .5em .5em 1.75em;color:#555;background:transparent;transition:0.5s}
             .dark input[type=password] {border-bottom-color:#061a2e}
             input[type=password]:focus {border-bottom-color:#ddd}
